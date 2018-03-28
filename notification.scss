@@ -1,0 +1,116 @@
+.notification {
+  width: 100%;
+  overflow: hidden;
+  height: 0;
+
+  &__header {
+    padding: 0 0 0 10px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__heading {
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: $font-weight-bold;
+    font-family: $font-family-main--bold;
+    white-space: nowrap;
+  }
+
+  &__text {
+    padding: 0 10px 10px 10px;
+  }
+
+  &__control {
+    padding: 10px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $color-state-danger;
+    }
+  }
+
+  &__presentational {
+    border: 1px solid $color-border;
+    border-radius: $radius-border;
+    background-color: #ffffff;
+    transform: translateX(110%);
+
+    &--error, &--warning, &--info {
+      color: #ffffff;
+
+      .notification__control {
+        color: #ffffff;
+      }
+    }
+
+    &--error {
+      background-color: $color-state-danger;
+    }
+
+    &--warning {
+      background-color: $color-state-warning;
+    }
+
+    &--info {
+      background-color: $color-state-ok;
+    }
+
+    &--in {
+      animation-delay: 0.3s;
+      animation-name: notification-in;
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+    }
+
+    &--out {
+      animation-name: notification-out;
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+    }
+  }
+}
+
+.notification-list {
+  top: 90px;
+  right: 10px;
+  width: 300px;
+  z-index: $z-index-modal;
+  overflow: hidden;
+  position: fixed;
+
+  &__inner {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@keyframes notification-in {
+  from {
+    transform: translateX(110%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes notification-out {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(110%);
+  }
+}
